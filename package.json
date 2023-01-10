@@ -1,0 +1,14 @@
+{
+  "name": "noom",
+  "version": "1.0.0",
+  "description": "Zoom Clone using NodeJS, WebRTC and Websockets.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funnystyle/noom.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/funnystyle/noom/issues"
+  },
+  "homepage": "https://github.com/funnystyle/noom#readme"
+}
