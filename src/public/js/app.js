@@ -5,7 +5,7 @@ socket.addEventListener("open", () => {
 });
 
 socket.addEventListener("message", (message) => {
-  console.log("Jest got this:", message, "from the server");
+  console.log("Jest got this:", message.data, "from the server");
 });
 
 socket.addEventListener("close", () => {
