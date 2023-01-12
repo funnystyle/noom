@@ -39,6 +39,7 @@ wsServer.on("connection", (socket) => {
     done();
     socket.join(roomName);
     socket.to(roomName).emit("welcome", socket.nickname);
+    wsServer.sockets.emit("room_change", publicRooms());
   });
   socket.on("disconnecting", () => {
     socket.rooms.forEach((room) => {
