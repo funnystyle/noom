@@ -10,12 +10,28 @@ app.use("/public", express.static(__dirname + "/public"));
 app.get("/", (req, res) => res.render("home"));
 app.get("/*", (req, res) => res.redirect("/"));
 
-
 const httpServer = http.createServer(app);
 const wsServer = SocketIO(httpServer);
 
+function publicRooms() {
+  const sids = wsServer.sockets.adapter.sids;
+  const rooms = wsServer.sockets.adapter.rooms;
+
+  const publicRooms = [];
+  rooms.forEach((value, key) => {
+    if (sids.get(key) === undefined) {
+      publicRooms.push(key);
+    }
+  });
+  return publicRooms;
+}
+
 wsServer.on("connection", (socket) => {
   socket["nickname"] = "Anon";
+  socket.onAny((event) => {
+    console.log(wsServer.sockets.adapter);
+    console.log(`Socket Event: ${event}`);
+  });
   socket.on("enter_room", (roomName, done) => {
     done();
     socket.join(roomName);
